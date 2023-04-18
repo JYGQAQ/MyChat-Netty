@@ -70,7 +70,8 @@ public class RpcClientManager {
         return (T) o;
     }
 
-    private static Channel channel = null;
+    // fix Singleton bug, 避免指令重排
+    private static volatile Channel channel = null;
     private static final Object LOCK = new Object();
 
     // 获取唯一的 channel 对象
